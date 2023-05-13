@@ -5,9 +5,9 @@ namespace FlowContext.Api.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class WeatherForecastController : ControllerBase
+    public class RandomController : ControllerBase
     {
-        [HttpGet(Name = "GetWeatherForecast")]
+        [HttpGet(Name = "")]
         public string Get()
         {
             var (contextFlowId, contextParentId, contextSpanId) = Flow.GetContext();
