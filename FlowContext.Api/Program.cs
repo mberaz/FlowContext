@@ -1,4 +1,6 @@
+using FlowContext.Api.Helpers;
 using FlowContext.Api.Middlewares;
+using FlowContext.Api.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,7 +10,8 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
+builder.Services.AddScoped<ICustomLogger,CustomLogger>();
+builder.Services.AddScoped<IRandomService,RandomService>();
 var app = builder.Build();
  
 // Configure the HTTP request pipeline.
