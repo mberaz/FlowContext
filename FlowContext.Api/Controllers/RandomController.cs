@@ -1,6 +1,7 @@
 using FlowContext.Api.Helpers;
 using FlowContext.Api.Services;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json.Linq;
 
 namespace FlowContext.Api.Controllers
 {
@@ -18,12 +19,15 @@ namespace FlowContext.Api.Controllers
         }
 
         [HttpGet(Name = "")]
-        public string Get()
+        public async Task<string> Get()
         {
-            var (contextFlowId, contextParentId, contextSpanId) = Flow.GetContext();
-
             _customLogger.Log("a test message");
-            _randomService.DoAction();
+            await _randomService.DoAction();
+
+            await HttpUtils.Get<JObject>("https://api.chucknorris.io/jokes/random");
+
+            var (contextFlowId, _, _) = Flow.GetContext();
+
             return $"flowID {contextFlowId}";
         }
     }
