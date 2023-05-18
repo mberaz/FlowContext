@@ -11,7 +11,7 @@ namespace FlowContext.Api.Helpers
         public void Log(string message)
         {
             var (contextFlowId, contextParentId, contextSpanId) = Flow.GetContext();
-            Trace.WriteLine($"[{contextFlowId}_{contextSpanId}] {message}");
+            Trace.WriteLine($"[{contextFlowId}_{contextParentId}_{contextSpanId}] {message}");
         }
     }
 }
